@@ -8,8 +8,8 @@
 
 const double alfa = 0.01;
 
-//Generador de números de Parisi-Rapuano.
-//Reproducción del código de los apuntes de la asignatura "Física Computacional"
+//Generador de nÃºmeros de Parisi-Rapuano.
+//ReproducciÃ³n del cÃ³digo de los apuntes de la asignatura "FÃ­sica Computacional"
 //impartida por Alfonso Tarancon Lafita (Universidad de Zaragoza)
  void ini_ran(int SEMILLA)
  {
@@ -39,7 +39,7 @@ const double alfa = 0.01;
     return r;
  }
 
- //Generador de los números aleatorios según distribución gaussiana por el método de Box-Muller
+ //Generador de los nÃºmeros aleatorios segÃºn distribuciÃ³n gaussiana por el mÃ©todo de Box-Muller
 double DistrGauss(double Av, double Desv){
     double d1, d2;
     //Se generan los numeros planos necesarios
@@ -47,7 +47,7 @@ double DistrGauss(double Av, double Desv){
     d2 = Random();
     if(d1 == 0)
         d1 = d2;
-    //Se usa la fórmula para crear dos números independientes según una gaussiana
+    //Se usa la fÃ³rmula para crear dos nÃºmeros independientes segÃºn una gaussiana
     return Av -Desv*sqrt(-2*log(d1))*cos(2*Pi*d2);
 }
 
@@ -168,12 +168,12 @@ Lattice* CreacionRedErdos(int nnodos, double prob) {
     for (int i = 0; i < nnodos; i++) {
         for (int j = i + 1; j < nnodos; j++) {
             if (Random() < prob) {
-                // Añadir j como vecino de i
+                // AÃ±adir j como vecino de i
                 Nodo *ni = &red->nodos[i];
                 ni->vecinos = realloc(ni->vecinos, (ni->NVecinos + 1) * sizeof(int));
                 ni->vecinos[ni->NVecinos++] = j;
 
-                // Añadir i como vecino de j
+                // AÃ±adir i como vecino de j
                 Nodo *nj = &red->nodos[j];
                 nj->vecinos = realloc(nj->vecinos, (nj->NVecinos + 1) * sizeof(int));
                 nj->vecinos[nj->NVecinos++] = i;
@@ -237,7 +237,7 @@ Lattice* ExtraerComponenteMayor(Lattice* red) {
     nueva->NNodos = mejor_tam;
     nueva->nodos = malloc(mejor_tam * sizeof(Nodo));
     nueva->NNodos0 = 0;
-    // Mapeo de nodos originales a nuevos índices
+    // Mapeo de nodos originales a nuevos Ã­ndices
     int* mapa = malloc(N * sizeof(int));
     for (int i = 0; i < N; i++)
         mapa[i] = -1;
@@ -246,9 +246,9 @@ Lattice* ExtraerComponenteMayor(Lattice* red) {
 
     for (int i = 0; i < mejor_tam; i++) {
         int old = mejor_componente[i]; //Indice del nodo en la red general
-        Nodo* nodo = &red->nodos[old]; //Dirección del nodo original
+        Nodo* nodo = &red->nodos[old]; //DirecciÃ³n del nodo original
         nueva->nodos[i].NVecinos = 0; //Inicializacion de la variable en la nueva red
-        nueva->nodos[i].vecinos = malloc(nodo->NVecinos * sizeof(int)); // Máximo posible
+        nueva->nodos[i].vecinos = malloc(nodo->NVecinos * sizeof(int)); // MÃ¡ximo posible
         nueva->nodos[i].opinion = nodo->opinion;
         if(nodo->opinion == 0){
             nueva->NNodos0++;
@@ -305,7 +305,7 @@ Lattice* Upgrading(Lattice *red, double s0, double s1, double s01, double s10, d
         }
         s = tabla[2*nodo->opinion + candidato->opinion];
         if(s>Random()){
-            // Verificar si ya existe una conexión
+            // Verificar si ya existe una conexiÃ³n
             conectado = 0;
             for (int k = 0; k < candidato->NVecinos; k++) {
                 if (candidato->vecinos[k] == n) {
@@ -315,7 +315,7 @@ Lattice* Upgrading(Lattice *red, double s0, double s1, double s01, double s10, d
             }
 
             if (!conectado) {
-                //Actualizo el nodo conectado con la nueva conexión.
+                //Actualizo el nodo conectado con la nueva conexiÃ³n.
                 candidato->vecinos = (int *)realloc(candidato->vecinos, sizeof(int) * (candidato->NVecinos + 1));
                 if (candidato->vecinos == NULL) {
                     fprintf(stderr, "Error al hacer realloc\n");
@@ -331,9 +331,9 @@ Lattice* Upgrading(Lattice *red, double s0, double s1, double s01, double s10, d
                     Nodo *vecino_a_desconectar = &red->nodos[vecino_original];
                     nodo->vecinos[n3] = n2;
 
-                    //Actualizo el nodo cuya conexión se rompe.
+                    //Actualizo el nodo cuya conexiÃ³n se rompe.
                     int o, found = 0;
-                    // Buscar el índice donde está el valor n
+                    // Buscar el Ã­ndice donde estÃ¡ el valor n
                     for (o = 0; o < vecino_a_desconectar->NVecinos; o++) {
                         if (vecino_a_desconectar->vecinos[o] == n) {
                             found = 1;
@@ -433,7 +433,7 @@ void ClusteringPorOpinion(Lattice *red, double *clust_op0, double *clust_op1) {
         Nodo nodo = red->nodos[i];
         int k = nodo.NVecinos;
 
-        if (k < 2) continue; // No se puede formar triángulo
+        if (k < 2) continue; // No se puede formar triÃ¡ngulo
 
         int conexiones = 0;
         // Comparar todos los pares de vecinos
