@@ -1,0 +1,37 @@
+from distutils.core import setup, Extension
+import os
+import shutil
+
+# Configura las extensiones con optimización
+lib_red = Extension(
+    name='Lib_red',
+    sources=['simulacion.c'],
+    extra_compile_args=['/O2'],  # Optimización para velocidad
+)
+
+bias_solver = Extension(
+    name='bias_solver',
+    sources=['NumericSolver.c'],
+    extra_compile_args=['/O2'],  # Optimización para velocidad
+)
+
+# Crear un setup temporal para compilar ambas librerías
+setup(
+    name='custom_dlls',
+    version='1.0',
+    description='Compila Lib_red.dll y bias_solver.dll',
+    ext_modules=[lib_red, bias_solver]
+)
+
+# Mueve los .dll a la raíz del proyecto
+def mover_dlls():
+    build_dir = os.path.join(os.getcwd(), 'build')
+    for root, dirs, files in os.walk(build_dir):
+        for file in files:
+            if file.endswith('.dll'):
+                src = os.path.join(root, file)
+                dst = os.path.join(os.getcwd(), file)
+                shutil.copyfile(src, dst)
+                print(f"📦 {file} compilado y movido a {dst}")
+
+mover_dlls()
