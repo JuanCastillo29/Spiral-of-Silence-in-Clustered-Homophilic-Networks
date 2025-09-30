@@ -19,5 +19,5 @@ The repository is divided into two different directories.
 
 References:
 This study is primarly based on:
--  A. Asikainen, G. Iñiguez, J. Ureña-Carrion, K. Kaski, and M. Kivelä, "Cumulative effects of triadic closure and homophily in social networks", Nature communications, vol 6, no 19, pp 1-12, 120.
+-  A. Asikainen, G. Iñiguez, J. Ureña-Carrion, K. Kaski, and M. Kivelä, "Cumulative effects of triadic closure and homophily in social networks", Science Advances, vol 6, no 19, eaax7310, 2020.
 -  F. Gaisbauer, E. Olbrich, and S. Banisch, "Dynamics of opinion expression", Physical Review E, vol 102, no 4, p. 042303, 2020
