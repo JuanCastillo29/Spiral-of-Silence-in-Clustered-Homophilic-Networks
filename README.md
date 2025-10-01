@@ -10,8 +10,29 @@ Public discourse emerges from the interplay between individuals willingness to v
 
 The repository is divided into two different directories.
 
-- 'C_codes'. Contains the computational expensive operations such as Monte Carlo simulations and integration algorithms. Two .c files are included, both ready to compile into different .dll libraries. In order to integrate them correctly with the python scripts, the libraries must be called 'Lib_red.dll' for the 'simulacion.c' script and 'bias_solver.dll' for the 'NumericSolver.c'. An /02 optimization is recommended. The directory contains also a python script to compile the libraries.
+- 'C_codes'. Contains the computational expensive operations such as Monte Carlo simulations and integration algorithms. Two .c files are included, both ready to compile into different .dll libraries. The directory contains also a python script to compile the libraries (in Windows).
 - 'Python_files'. This directory contains four python scripts used to simulate and integrate the system evolution to obtain the paper figures. Minor changes might be necessary to correctly reproduce the figures.
+
+
+## Get started
+
+This project includes C extensions that need to be compiled to generate dynamic libraries (.dll files). Follow the steps below to build and install the required extensions using Python.
+
+### Requirements
+
+- Python 3.x
+- A compatible C compiler (e.g., Microsoft Visual C++ Build Tools)
+- Windows (the build script uses the /O2 flag, which is specific to MSVC)
+
+### Compiling the DLLs
+
+1. Open a terminal in the root directory of the project.
+2. Run the following command to build the extensions and generate optimized .dll files:
+   ```bash python build_dlls.py ```
+
+**Notes**: 
+- The extensions are compiled with the /O2 flag to optimize for speed.
+- If you're on Linux or macOS, you'll need to adapt the script (e.g., change compile flags and output file extensions like .so instead of .dll).
 
 ---
 
